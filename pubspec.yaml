@@ -1,5 +1,5 @@
 name: core_values
-description: Netgurur core values app
+description: Netguru core values app
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
@@ -44,7 +44,7 @@ flutter:
   fonts:
     - family: LexendDeca
       fonts:
-        - asset: fonts\LexendDeca-Regular.ttf
+        - asset: fonts/LexendDeca-Regular.ttf
   assets:
     - assets/images/netguru_logo.png
 

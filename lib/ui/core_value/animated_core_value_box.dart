@@ -17,7 +17,7 @@ class AnimatedCoreValueBox extends StatelessWidget {
             alignment: Alignment.center,
             padding: const EdgeInsets.all(10),
             margin: EdgeInsets.symmetric(
-                horizontal: size.width * 0.1, vertical: size.height * 0.2),
+                horizontal: size.width * 0.1, vertical: size.height * 0.15),
             child: Text(
               valueText,
               textAlign: TextAlign.center,

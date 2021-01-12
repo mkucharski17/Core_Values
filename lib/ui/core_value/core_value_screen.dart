@@ -43,44 +43,45 @@ class _CoreValueScreenState extends State<CoreValueScreen>
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CoreValuesCubit, CoreValuesState>(
-        builder: (context, state) {
-      if (state is CoreValuesUpdated) {
-        coreValues = state.coreValues;
-        return Center(
-            child: Stack(
-          children: [
-            AnimatedCoreValueBox(
-              valueText: coreValues[nextValueIndex],
-              offset: _higherAnimation,
-            ),
-            AnimatedCoreValueBox(
-              valueText: coreValues[currentValueIndex],
-              offset: _lowerAnimation,
-            )
-          ],
-        ));
-      } else
-        return CircularProgressIndicator(
-          valueColor:
-              AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
-        );
-    });
+    return Center(
+      child: BlocBuilder<CoreValuesCubit, CoreValuesState>(
+          builder: (context, state) {
+        if (state is CoreValuesUpdated) {
+          coreValues = state.coreValues;
+          return Stack(
+            children: [
+          AnimatedCoreValueBox(
+            valueText: coreValues[nextValueIndex],
+            offset: _higherAnimation,
+          ),
+          AnimatedCoreValueBox(
+            valueText: coreValues[currentValueIndex],
+            offset: _lowerAnimation,
+          )
+            ],
+          );
+        } else
+          return CircularProgressIndicator(
+            valueColor:
+                AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
+          );
+      }),
+    );
   }
 
   void changeValues(AnimationStatus status) {
     Future.delayed(const Duration(seconds: 5), () {
       if (this.mounted)
         setState(() {
-        if (status == AnimationStatus.completed) {
-          {
-            _controller.reset();
-            currentValueIndex = nextValueIndex;
-            nextValueIndex = (nextValueIndex - 1) % coreValues.length;
-            _controller.forward();
+          if (status == AnimationStatus.completed) {
+            {
+              _controller.reset();
+              currentValueIndex = nextValueIndex;
+              nextValueIndex = (nextValueIndex - 1) % coreValues.length;
+              _controller.forward();
+            }
           }
-        }
-      });
+        });
     });
   }
 }

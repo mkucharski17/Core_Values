@@ -18,7 +18,6 @@ class FavouritesCubit extends Cubit<FavouritesState> {
 
     final List<String> currentValues =
         appPreferences.getStringList(favouritesSharePrefKey) ?? <String>[];
-    if(currentValues.isNotEmpty)
     emit(FavouritesUpdated(currentValues));
   }
 

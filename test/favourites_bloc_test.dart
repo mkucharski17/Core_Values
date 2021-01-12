@@ -21,7 +21,7 @@ void main() {
               .thenAnswer((_) => []);
           return FavouritesCubit(_appPreferencesMock);
         },
-        expect: <FavouritesState>[],
+        expect: <FavouritesState>[FavouritesUpdated([])],
         verify: (_) {
           verify(_appPreferencesMock.initialize()).called(1);
           verify(_appPreferencesMock.getStringList(favouritesSharePrefKey))
@@ -60,6 +60,7 @@ void main() {
           cubit.toggleValue(favouriteValue);
         },
         expect: <FavouritesState>[
+          FavouritesUpdated([]),
           FavouritesUpdated([favouriteValue])
         ],
         verify: (_) {
